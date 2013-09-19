@@ -8,23 +8,23 @@
 
 var questions = [
                 {   question: "What is the population of Brazil?",
-                    choice: ["145 Million", "175 million", "195 million", "205 million"],
+                    choices: ["145 Million", "175 million", "195 million", "205 million"],
                     correctAnswer: 0
                 },
                 {   question: "What is 27*14?",
-                    choice: ["485", "634", "408", "528"],
+                    choices: ["485", "634", "408", "528"],
                     correctAnswer: 2
                 },
                 {   question: "What is the busiest train station in the world?",
-                    choice: ["Grand Central, NY", "Shibuya, Tokyo", "Beijing Central, Chine", "Gard du Nord, Paris"],
+                    choices: ["Grand Central, NY", "Shibuya, Tokyo", "Beijing Central, Chine", "Gard du Nord, Paris"],
                     correctAnswer: 0
                 },
                 {   question: "What is the longest river?",
-                    choice: ["Nile", "Amazon", "Mississippi", "Mekong"],
+                    choices: ["Nile", "Amazon", "Mississippi", "Mekong"],
                     correctAnswer: 0
                 },
                 {   question: "What is the busiest tube station in the London?",
-                    choice: ["Waterloo", "Baker Street", "Kings Cross", "Victoria"],
+                    choices: ["Waterloo", "Baker Street", "Kings Cross", "Victoria"],
                     correctAnswer: 0
                 }
 ];
@@ -47,10 +47,29 @@ $(document).ready(function() {
     });
 });
 
+// This displays the current question AND the choices
+
+// TODO: Clean up the js stuff. We should not be referring to document
+// TODO: Find the right node and ensure you adding <li> properly
+// TODO: Delete all nodes before you go to the next question
+// TODO: refactor it all in jQuery
+// TODO: do a version using Pure JS - no jQuery
+// TODO: Add clean CSS and style it nicely
+
 function displayCurrentQuestion() {
     var question = questions[currentQuestion].question;
     console.log(question);
     $(document).find(".question").text(question);
+
+    var numChoices = questions[currentQuestion].choices.length;
+    for ( i = 0; i < numChoices; i ++) {
+
+        var choice = questions[currentQuestion].choices[i];
+        var choiceTag = $('<li>' + choice + '</li>');
+        console.log(choice);
+
+        $(document).find("ul").append(choiceTag);
+    }
 }
 
 function resetQuiz() {
