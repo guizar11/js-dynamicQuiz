@@ -19,8 +19,24 @@
     margin-top: 50px;
     color: red;
 }
+/* Quiz Classes */
 
+.quiz {
+    background-color: pink;
+}
+
+/* Use SASS maybe as a test - since choices should inherit from choiceList but maybe change just font? */
+.choiceList {
+    font-family: Courier, serif;
+    color: blueviolet;
+}
 .choices {
     font-family: Courier, serif;
     color: blueviolet;
 }
+
+.result {
+    background-color: grey;
+}
+
+/* End of Quiz Classes */
