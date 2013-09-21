@@ -35,40 +35,27 @@ var correctAnswers = 0;
 $(document).ready(function() {
 
     // Display the first question
-    console.log("Current Question: " + currentQuestion);
-
     displayCurrentQuestion();
 
     // On clicking next, display the next question
     $(this).find(".nextButton").on("click", function() {
-
         if (currentQuestion < questions.length) {
             displayCurrentQuestion();
         } else {
-            console.log("Reset Quiz");
-
             displayScore();
-            resetQuiz();
-
-            // This adds a new event to nextButton
-            // Instead we need to remove nextButton, display playAgain button
-            // If you click that - reset the quiz, delete the playAgain button
-            // And display the nextButton
-
-//            $(document).find(".nextButton").remove();
-//            $(document).find(".nextButton").on("click", function() {
-//                resetQuiz();
-//            });
+            $(document).find(".nextButton").toggle();
+            $(document).find(".playAgainButton").toggle();
         }
+    });
 
-        currentQuestion++;
+    $(document).find(".playAgainButton").on("click", function() {
+        $(document).find(".nextButton").toggle();
+        $(document).find(".playAgainButton").toggle();
+        resetQuiz();
+        displayCurrentQuestion();
     });
 
 });
-
-
-// TODO: do a version using Pure JS - no jQuery
-// TODO: Add clean CSS and style it nicely
 
 // This displays the current question AND the choices
 function displayCurrentQuestion() {
@@ -86,6 +73,7 @@ function displayCurrentQuestion() {
     // Remove all current <li> elements (if any)
     $(choiceList).find("li").remove();
 
+    var choice, choiceTag;
     for ( i = 0; i < numChoices; i ++) {
         choice = questions[currentQuestion].choices[i];
         choiceTag = $('<li>' + choice + '</li>');
@@ -94,7 +82,7 @@ function displayCurrentQuestion() {
         $(choiceList).append(choiceTag);
     }
 
-    $(document).find(".nextButton").text("Next question");
+    currentQuestion++;
 }
 
 function resetQuiz() {

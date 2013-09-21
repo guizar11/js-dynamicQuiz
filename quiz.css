@@ -19,6 +19,19 @@
     margin-top: 50px;
     color: red;
 }
+
+.playAgainButton {
+    box-shadow: 3px 3px 5px #888;
+    -moz-border-radius: 3px;
+    width: 80px;
+    height: 60px;
+    text-align: center;
+    background-color: yellow;
+    clear: both;
+    margin-top: 50px;
+    color: red;
+    display: none;
+}
 /* Quiz Classes */
 
 .quiz {
