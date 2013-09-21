@@ -1,28 +1,22 @@
-.question {
-    background-color : blue;
-    border : 1px solid black;
-    height: 50px;
-    width: 350px;
-    color: white;
-    text-align: center;
-    font-family: Verdana, sans-serif;
-}
+
+@import url(http://fonts.googleapis.com/css?family=Lily+Script+One);
 
 .nextButton {
     box-shadow: 3px 3px 5px #888;
-    -moz-border-radius: 3px;
+    border-radius: 6px;
     width: 80px;
     height: 60px;
     text-align: center;
-    background-color: yellow;
+    background-color: lightblue;
     clear: both;
-    margin-top: 50px;
+    margin-bottom: 50px;
     color: red;
+    font-family: 'Rokkitt', serif;
 }
 
 .playAgainButton {
     box-shadow: 3px 3px 5px #888;
-    -moz-border-radius: 3px;
+    border-radius: 3px;
     width: 80px;
     height: 60px;
     text-align: center;
@@ -31,11 +25,51 @@
     margin-top: 50px;
     color: red;
     display: none;
+    font-family: 'Rokkitt', serif;
 }
 /* Quiz Classes */
+h1 {
+    font-family: 'Rokkitt', serif;
+}
+
+ul{
+    list-style: none;
+}
+
+li {
+    font-family: 'Rokkitt', serif;
+    font-size: 2em;
+}
+
+input[type=radio] {
+    border: 0px;
+    width: 20px;
+    height: 2em;
+}
+
+p {
+    font-family: 'Rokkitt', serif;
+}
+
+.question {
+    font-family: 'Rokkitt', serif;
+    font-size: 2em;
+    width: 50%;
+    height: auto;
+    margin: 5px; /* ?? Doesn't work */
+    border-radius: 6px;
+    background-color: lightgrey;
+}
 
 .quiz {
-    background-color: pink;
+    background-color: lightgoldenrodyellow;
+    border-radius: 6px;
+}
+
+.quizMessage {
+    background-color: peachpuff;
+    border-radius: 6px;
+    width: 20%;
 }
 
 /* Use SASS maybe as a test - since choices should inherit from choiceList but maybe change just font? */
@@ -43,13 +77,13 @@
     font-family: Courier, serif;
     color: blueviolet;
 }
-.choices {
-    font-family: Courier, serif;
-    color: blueviolet;
-}
 
 .result {
-    background-color: grey;
+    width: 50%;
+    height: auto;
+    margin: 5px; /* ?? Doesn't work */
+    border-radius: 6px;
+    background-color: linen;
 }
 
 /* End of Quiz Classes */
