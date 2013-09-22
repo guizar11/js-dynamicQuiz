@@ -115,7 +115,7 @@ function displayScore() {
 }
 
 function hideScore() {
-    // TODO: Doesn't work...
+    // TODO: Not sure why this works as I don't think hide is defined method!
     $(document).find(".result").hide();
 }
 
