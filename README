@@ -1,10 +1,15 @@
-This is an attempt to make my first full Javascript Web application
+This is an attempt to make my first full Javascript application
 
 It is part of the course:
 
 How to Learn JavaScript Properly:
 
 http://javascriptissexy.com/how-to-learn-javascript-properly/
+
+NOTE: This uses jQuery for DOM traversal and button events -
+
+There are other versions listed in the comments of the above
+site that are use ONLY Javascript 
 
 ==============================================================
 
