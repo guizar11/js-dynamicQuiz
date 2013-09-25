@@ -39,7 +39,29 @@ p {
     position: relative;
 }
 
+.buttons {
+    margin: auto;
+    text-align: center;
+}
+
 .nextButton {
+    box-shadow: 3px 3px 5px #888;
+    border-radius: 6px;
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    background-color: lightgrey;
+    /*clear: both;*/
+    display: inline-block;
+    color: red;
+    font-family: 'Rokkitt', serif;
+    position: relative;
+    /*margin: auto;*/
+    padding-top: 20px;
+
+}
+
+.backButton {
     box-shadow: 3px 3px 5px #888;
     border-radius: 6px;
     width: 150px;
@@ -50,9 +72,9 @@ p {
     color: red;
     font-family: 'Rokkitt', serif;
     position: relative;
-    margin: auto;
+    display: inline-block;
+    /*margin: auto;*/
     padding-top: 20px;
-
 }
 
 .question {

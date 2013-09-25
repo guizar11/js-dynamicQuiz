@@ -9,23 +9,28 @@
 var questions = [
                 {   question: "What is the population of Brazil?",
                     choices: ["145 million", "199 million", "182 million", "205 million"],
-                    correctAnswer: 1
+                    correctAnswer: 1,
+                    userAnswer: null
                 },
                 {   question: "What is 27*14?",
                     choices: ["485", "634", "408", "528"],
-                    correctAnswer: 2
+                    correctAnswer: 2,
+                    userAnswer: null
                 },
                 {   question: "What is the busiest train station in the world?",
                     choices: ["Grand Central, NY", "Shibuya, Tokyo", "Beijing Central, Chine", "Gard du Nord, Paris"],
-                    correctAnswer: 1
+                    correctAnswer: 1,
+                    userAnswer: null
                 },
                 {   question: "What is the longest river?",
                     choices: ["Nile", "Amazon", "Mississippi", "Yangtze"],
-                    correctAnswer: 0
+                    correctAnswer: 0,
+                    userAnswer: null
                 },
                 {   question: "What is the busiest tube station in the London?",
                     choices: ["Waterloo", "Baker Street", "Kings Cross", "Victoria"],
-                    correctAnswer: 0
+                    correctAnswer: 0,
+                    userAnswer: null
                 }
 ];
 
@@ -38,6 +43,7 @@ $(document).ready(function() {
     // Display the first question
     displayCurrentQuestion();
     $(this).find(".quizMessage").hide();
+    $(this).find(".backButton").hide();
 
     // On clicking next, display the next question
     $(this).find(".nextButton").on("click", function() {
@@ -53,11 +59,11 @@ $(document).ready(function() {
                 // TODO: Remove any message -> not sure if this is efficient to call this each time....
                 $(document).find(".quizMessage").hide();
 
-                if (value == questions[currentQuestion].correctAnswer) {
-                    correctAnswers++;
-                }
+                // Store the user's answer in case they want to go back
+                questions[currentQuestion].userAnswer = value;
 
                 currentQuestion++; // Since we have already displayed the first question on DOM ready
+                $(document).find(".backButton").show();
                 if (currentQuestion < questions.length) {
                     displayCurrentQuestion();
                 } else {
@@ -78,12 +84,16 @@ $(document).ready(function() {
         }
     });
 
+
+    $(this).find(".backButton").on("click", function() {
+        currentQuestion--;
+        displayCurrentQuestion();
+    });
+
 });
 
 // This displays the current question AND the choices
 function displayCurrentQuestion() {
-
-    console.log("In display current Question");
 
     var question = questions[currentQuestion].question;
     var questionClass = $(document).find(".quizContainer > .question");
@@ -96,10 +106,19 @@ function displayCurrentQuestion() {
     // Remove all current <li> elements (if any)
     $(choiceList).find("li").remove();
 
-    var choice;
+    var choice, tag, userAnswer;
     for ( i = 0; i < numChoices; i ++) {
         choice = questions[currentQuestion].choices[i];
-        $('<li><input type="radio" value=' + i + ' name="dynradio" />' + choice + '</li>').appendTo(choiceList);
+        userAnswer = questions[currentQuestion].userAnswer;
+
+        // If we already have a user answer for this choice then check the radio button
+        if ( i == userAnswer ) {
+            tag = '<li><input type="radio" value=' + i + ' checked=true name="dynradio" />' + choice + '</li>';
+        } else {
+            tag = '<li><input type="radio" value=' + i + ' name="dynradio" />' + choice + '</li>';
+        }
+        $(tag).appendTo(choiceList);
+
     }
 }
 
@@ -110,6 +129,14 @@ function resetQuiz() {
 }
 
 function displayScore() {
+
+    numQuestions = questions.length;
+    while ( numQuestions -- ) {
+        if ( questions[numQuestions].userAnswer == questions[numQuestions].correctAnswer ) {
+            correctAnswers++;
+        }
+    }
+
     $(document).find(".quizContainer > .result").text("You scored: " + correctAnswers + " out of: " + questions.length);
     $(document).find(".quizContainer > .result").show();
 }
