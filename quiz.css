@@ -77,6 +77,22 @@ p {
     padding-top: 20px;
 }
 
+.writeJsonFile {
+    box-shadow: 3px 3px 5px #888;
+    border-radius: 6px;
+    width: 150px;
+    height: 40px;
+    text-align: center;
+    background-color: lightgrey;
+    /*clear: both;*/
+    color: red;
+    font-family: 'Rokkitt', serif;
+    position: relative;
+    display: inline-block;
+    /*margin: auto;*/
+    padding-top: 20px;
+}
+
 .question {
     font-family: 'Rokkitt', serif;
     font-size: 2em;

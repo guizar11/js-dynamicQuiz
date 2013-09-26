@@ -1,9 +1,7 @@
 /**
- * Created with JetBrains WebStorm.
  * User: pwanwu
  * Date: 18/09/2013
  * Time: 17:41
- * To change this template use File | Settings | File Templates.
  */
 
 var questions = [
@@ -90,6 +88,8 @@ $(document).ready(function() {
         displayCurrentQuestion();
     });
 
+    $(this).find(".writeJsonFile").on("click", createJsonFile);
+
 });
 
 // This displays the current question AND the choices
@@ -145,4 +145,16 @@ function hideScore() {
     // TODO: Not sure why this works as I don't think hide is defined method!
     $(document).find(".result").hide();
 }
+function createJsonFile() {
+    // some jQuery to write to file
+    $.ajax({
+        type : "POST",
+        url : "json.php",
+        dataType : 'json',
+        data : {
+            json : questions
+        }
+    });
+    console.log("Wrote the JSON file OK! ")
+};
 
