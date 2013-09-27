@@ -1,9 +1,13 @@
 /**
  * User: pwanwu
+ * Email: paul.wanwu@gmail.com
  * Date: 18/09/2013
  * Time: 17:41
  */
 
+/* Dynamic JS & jQuery quiz. From the course: http://javascriptissexy.com/how-to-learn-javascript-properly/ */
+
+// The original array of questions. This was written out to a file as JSON as part of the development of the quiz
 //var questions = [
 //                {   question: "What is the population of Brazil?",
 //                    choices: ["145 million", "199 million", "182 million", "205 million"],
@@ -32,6 +36,7 @@
 //                }
 //];
 
+// Questions are now read in from JSON file
 var questions = {};
 var currentQuestion = 0;
 var correctAnswers = 0;
@@ -39,13 +44,9 @@ var quizOver = false;
 
 $(document).ready(function() {
 
-    // Read JSON file: See http://stackoverflow.com/questions/2792423/using-jquery-to-get-json-objects-from-local-file
-    readJsonFile().done(function (data) {
-        // questions = data;
-        console.log("Questions read from JSON file: " + questions);
-    });
-
-    console.log("Question 1: " + questions[0].question);
+    // Read JSON file:
+    readJsonFile();
+    displayCurrentQuestion();
 
     $(this).find(".quizMessage").hide();
     $(this).find(".backButton").hide();
@@ -95,7 +96,8 @@ $(document).ready(function() {
         displayCurrentQuestion();
     });
 
-    $(this).find(".writeJsonFile").on("click", createJsonFile);
+    // This was used to initially write out the array of question objects.
+    // $(this).find(".writeJsonFile").on("click", createJsonFile);
 
 });
 
@@ -163,12 +165,18 @@ function createJsonFile() {
         }
     });
     console.log("Wrote the JSON file OK! ")
-};
+}
 
 function readJsonFile() {
-    return $.getJSON("questions.json").then(function (data) {
-        questions = data;
-        return data;
+    $.ajax({
+        type: 'GET',
+        url: 'questions.json',
+        dataType: 'json',
+        success: function(data) {
+            questions = data;
+        },
+        // This forces the Ajax callback to respond only when completed
+        async: false
     });
-};
+}
 
