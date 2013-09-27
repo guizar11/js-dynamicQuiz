@@ -8,7 +8,7 @@
    $json = $_POST['json'];
    $info = json_encode($json);
 
-   $file = fopen('new_map_data.json','w+');
+   $file = fopen('questions.json','w+');
    fwrite($file, $info);
    fclose($file);
 ?>

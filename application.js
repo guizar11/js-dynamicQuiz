@@ -4,42 +4,49 @@
  * Time: 17:41
  */
 
-var questions = [
-                {   question: "What is the population of Brazil?",
-                    choices: ["145 million", "199 million", "182 million", "205 million"],
-                    correctAnswer: 1,
-                    userAnswer: null
-                },
-                {   question: "What is 27*14?",
-                    choices: ["485", "634", "408", "528"],
-                    correctAnswer: 2,
-                    userAnswer: null
-                },
-                {   question: "What is the busiest train station in the world?",
-                    choices: ["Grand Central, NY", "Shibuya, Tokyo", "Beijing Central, Chine", "Gard du Nord, Paris"],
-                    correctAnswer: 1,
-                    userAnswer: null
-                },
-                {   question: "What is the longest river?",
-                    choices: ["Nile", "Amazon", "Mississippi", "Yangtze"],
-                    correctAnswer: 0,
-                    userAnswer: null
-                },
-                {   question: "What is the busiest tube station in the London?",
-                    choices: ["Waterloo", "Baker Street", "Kings Cross", "Victoria"],
-                    correctAnswer: 0,
-                    userAnswer: null
-                }
-];
+//var questions = [
+//                {   question: "What is the population of Brazil?",
+//                    choices: ["145 million", "199 million", "182 million", "205 million"],
+//                    correctAnswer: 1,
+//                    userAnswer: null
+//                },
+//                {   question: "What is 27*14?",
+//                    choices: ["485", "634", "408", "528"],
+//                    correctAnswer: 2,
+//                    userAnswer: null
+//                },
+//                {   question: "What is the busiest train station in the world?",
+//                    choices: ["Grand Central, NY", "Shibuya, Tokyo", "Beijing Central, Chine", "Gard du Nord, Paris"],
+//                    correctAnswer: 1,
+//                    userAnswer: null
+//                },
+//                {   question: "What is the longest river?",
+//                    choices: ["Nile", "Amazon", "Mississippi", "Yangtze"],
+//                    correctAnswer: 0,
+//                    userAnswer: null
+//                },
+//                {   question: "What is the busiest tube station in the London?",
+//                    choices: ["Waterloo", "Baker Street", "Kings Cross", "Victoria"],
+//                    correctAnswer: 0,
+//                    userAnswer: null
+//                }
+//];
 
+var questions = {};
 var currentQuestion = 0;
 var correctAnswers = 0;
 var quizOver = false;
 
 $(document).ready(function() {
 
-    // Display the first question
-    displayCurrentQuestion();
+    // Read JSON file: See http://stackoverflow.com/questions/2792423/using-jquery-to-get-json-objects-from-local-file
+    readJsonFile().done(function (data) {
+        // questions = data;
+        console.log("Questions read from JSON file: " + questions);
+    });
+
+    console.log("Question 1: " + questions[0].question);
+
     $(this).find(".quizMessage").hide();
     $(this).find(".backButton").hide();
 
@@ -156,5 +163,12 @@ function createJsonFile() {
         }
     });
     console.log("Wrote the JSON file OK! ")
+};
+
+function readJsonFile() {
+    return $.getJSON("questions.json").then(function (data) {
+        questions = data;
+        return data;
+    });
 };
 
