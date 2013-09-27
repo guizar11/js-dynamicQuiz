@@ -151,7 +151,7 @@ function displayScore() {
 }
 
 function hideScore() {
-    // TODO: Not sure why this works as I don't think hide is defined method!
+    // TODO: Not sure why this works as I don't think hide is a defined method?
     $(document).find(".result").hide();
 }
 function createJsonFile() {
