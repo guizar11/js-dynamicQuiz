@@ -99,6 +99,29 @@ $(document).ready(function() {
     // This was used to initially write out the array of question objects.
     // $(this).find(".writeJsonFile").on("click", createJsonFile);
 
+
+    // Event handler for submit button on user login
+    $("#btnSubmit").click(function () {
+        //collect userName and password entered by users
+        var username = $("#username").val();
+        var password = $("#password").val();
+        console.log("userName is " + username + " and password is " + password);
+        localStorage.setItem("user", username);
+        localStorage.setItem("password", password);
+        // call the authenticate function
+        // authenticate(userName, password);
+    });
+
+    // Read user and password from local storage
+    // localStorage.clear();
+    username = localStorage.getItem("user");
+    password = localStorage.getItem("password");
+    if (username != null) {
+        console.log("Read LocalStorage: username is " + username + " and password is " + password);
+        $("#username").val(username);
+        $("#password").val(password);
+    }
+
 });
 
 // This displays the current question AND the choices
@@ -110,6 +133,7 @@ function displayCurrentQuestion() {
     var numChoices = questions[currentQuestion].choices.length;
 
     // Set the questionClass text to the current question
+    $(questionClass).hide().fadeIn('slow');
     $(questionClass).text(question);
 
     // Remove all current <li> elements (if any)
@@ -178,5 +202,22 @@ function readJsonFile() {
         // This forces the Ajax callback to respond only when completed
         async: false
     });
+}
+
+//authenticate function to make ajax call
+function authenticate(userName, password) {
+    $.ajax
+    ({
+        type: "POST",
+        //the url where you want to sent the userName and password to
+        url: "http://your-url.com/secure/authenticate.php",
+        dataType: 'json',
+        async: false,
+        //json object to sent to the authentication url
+        data: '{"userName": "' + userName + '", "password" : "' + password + '"}',
+        success: function () {
+            //do any process for successful authentication here
+        }
+    })
 }
 

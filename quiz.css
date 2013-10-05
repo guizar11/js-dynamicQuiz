@@ -92,6 +92,19 @@ p {
     padding-top: 20px;
 }
 
+.login-form{
+    font-family: 'Rokkitt', serif;
+    font-size: 1em;
+    width: 50%;
+    height: auto;
+    margin: auto;
+    border-radius: 6px;
+    background-color: white;
+    text-align: center;
+    margin-bottom: 5px;
+    /*visibility: hidden;*/
+}
+
 .question {
     font-family: 'Rokkitt', serif;
     font-size: 2em;
@@ -101,6 +114,7 @@ p {
     border-radius: 6px;
     background-color: lightgrey;
     text-align: center;
+    /*visibility: hidden;*/
 }
 
 .quizMessage {
