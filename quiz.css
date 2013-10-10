@@ -24,9 +24,7 @@ p {
     font-family: 'Rokkitt', serif;
 }
 
-
 /* Quiz Classes */
-
 .quizContainer {
     background-color: lightgoldenrodyellow;
     border-radius: 6px;
@@ -39,6 +37,9 @@ p {
     position: relative;
 }
 
+.userName {
+    color: blue;
+}
 .buttons {
     margin: auto;
     text-align: center;

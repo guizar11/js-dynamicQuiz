@@ -36,6 +36,54 @@
 //                }
 //];
 
+
+var CookieUtil = {
+
+    get: function (name){
+        var cookieName = encodeURIComponent(name) + "=",
+            cookieStart = document.cookie.indexOf(cookieName),
+            cookieValue = null,
+            cookieEnd;
+
+        if (cookieStart > -1){
+            cookieEnd = document.cookie.indexOf(";", cookieStart);
+            if (cookieEnd == -1){
+                cookieEnd = document.cookie.length;
+            }
+            cookieValue = decodeURIComponent(document.cookie.substring(cookieStart + cookieName.length, cookieEnd));
+        }
+
+        return cookieValue;
+    },
+
+    set: function (name, value, expires, path, domain, secure) {
+        var cookieText = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+        if (expires instanceof Date) {
+            cookieText += "; expires=" + expires.toGMTString();
+        }
+
+        if (path) {
+            cookieText += "; path=" + path;
+        }
+
+        if (domain) {
+            cookieText += "; domain=" + domain;
+        }
+
+        if (secure) {
+            cookieText += "; secure";
+        }
+
+        document.cookie = cookieText;
+    },
+
+    unset: function (name, path, domain, secure){
+        this.set(name, "", new Date(0), path, domain, secure);
+    }
+
+};
+
 // Questions are now read in from JSON file
 var questions = {};
 var currentQuestion = 0;
@@ -110,6 +158,10 @@ $(document).ready(function() {
         localStorage.setItem("password", password);
         // call the authenticate function
         // authenticate(userName, password);
+
+        // Set Cookie
+        CookieUtil.set('name', username);
+
     });
 
     // Read user and password from local storage
@@ -122,6 +174,10 @@ $(document).ready(function() {
         $("#password").val(password);
     }
 
+    // Set welcome message to say hello to user name
+    if (CookieUtil.get('name') != null ) {
+        $(this).find(".userName").text(CookieUtil.get('name'));
+    }
 });
 
 // This displays the current question AND the choices
