@@ -81,7 +81,6 @@ var CookieUtil = {
     unset: function (name, path, domain, secure){
         this.set(name, "", new Date(0), path, domain, secure);
     }
-
 };
 
 // Questions are now read in from JSON file
